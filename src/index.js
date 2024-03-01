@@ -29,26 +29,6 @@ const options = {
   
 
 
- 
-// app.get("/products",(req,res)=>{//Ruta Read products
-//     res.send({Products})//Utilizo res.json (products porqué debería enviarme un archivo de objetos de productos)
-// }) 
-
-// router.get("/dashboard",(req,res)=>{//Ruta Read dashboard
-//     res.send(Products)
-//     const nuevoProducto={
-//         nombre: req.body.nombre, 
-//         descripción:req.body.descripción, 
-//         imagen:req.body.imagen,
-//         categoria:req.body.categoria, 
-//         talla:req.body.talla,
-//         precio:req.body.precio 
-//     }
-//     Products.push(nuevoProducto)
-// })
-
-// router.post("/dashboard",(req,res)=>{//Ruta Create dashboard
-//     req.send("Añadido nuevo producto")})
 
 
 
