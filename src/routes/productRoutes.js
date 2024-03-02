@@ -3,16 +3,10 @@ const express= require ("express") //requiero express de la raiz index.js
 const router=express.Router(); //inicializo enrutador de express
 const {Product} = require("../models/Product.js");
 const {templateform}= require("../models/template.js");
+const ProductController= require("../controllers/productController.js")
 
 //Ruta get products
-router.get("/products", async(req, res) => {
-    try {
-        const products = await Product.find();//Find es un metodo de mongo que te permite encontrar todos los productos en este caso
-        res.send(products);
-    } catch (error) {
-        console.error(error);
-    }
-});
+router.get("/products",ProductController.getProduct );
 
 //Ruta get dashboard
 router.get("/dashboard",async (req,res)=>{
@@ -64,13 +58,32 @@ router.post("/dashboard",async (req,res)=>{
 //GET /dashboard/new
 router.get("/dashboard/new", (req,res)=>{//Ruta Read dashboard/new
 res.send(templateform)
-  
 })
 
+//Delete a Product using id
+router.delete("/dashboard/id/:_id", async (req,res)=>{
+    try{
+        const id=req.params._id;
+        const product = await Product.findByIdAndDelete(id);
+            res.json({mensaje:"The product that you have already deleted is:", product})
+    }
+    catch (error){
+        console.error(error);
+        res.status(500).send({
+        message: "There was a problem deleting the product with id number: " +
+                    req.params._id,
+            });
+    }
+    })
+
+
+
 //GET /dashboard/:productId/edit: Devuelve el formulario para editar un producto.
+//NO FUNCIONA
 router.get("dashboard/:_id/edit", async (req, res) => {
     try {
         const product = await Product.findById(req.params._id);
+        
         res.send(product,templateform);
     } catch (error) {
         console.error(error);
@@ -80,6 +93,7 @@ router.get("dashboard/:_id/edit", async (req, res) => {
         });
     }
 });
+
 
 
 
