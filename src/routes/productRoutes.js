@@ -2,46 +2,34 @@
 const express= require ("express") //requiero express de la raiz index.js
 const router=express.Router(); //inicializo enrutador de express
 
-const Product = require("../models/Product.js");
+const {Product} = require("../models/Product.js");
 
 
-// let Products = [//listado de productos ejemplos para que aparezcan en localHost//3005 de forma estructurada
-//     {  nombre: "Camiseta azúl",
-//      descripción:"ropa",
-//       imagen:"https://www.zalando.es/next-sports-standard-camiseta-basica-cobalt-blue-nx343d001-k11.html?size=3a&allophones=0&wmc=SEM340_NB_GO._3922365855_680653101_35177162592.&opc=2211&mpp=google|v1||pla-297546631617||1005402||g|c||149809974124||pla|NX343D001-K11003Y000|297546631617|1|&gclsrc=aw.ds&gad_source=1&gclid=CjwKCAiA0PuuBhBsEiwAS7fsNZfPiEXEa_yYXZbBG0EqsMO_cyWcoeo4zpIp0mXG-7f_RWKzXp1g8xoCXuMQAvD_BwE",
-//       categoria:"camisetas",
-//        talla:"S",
-//        precio:4.50 },{  nombre: "Camiseta azúl",
-//        descripción:"ropa",
-//         imagen:"https://www.zalando.es/next-sports-standard-camiseta-basica-cobalt-blue-nx343d001-k11.html?size=3a&allophones=0&wmc=SEM340_NB_GO._3922365855_680653101_35177162592.&opc=2211&mpp=google|v1||pla-297546631617||1005402||g|c||149809974124||pla|NX343D001-K11003Y000|297546631617|1|&gclsrc=aw.ds&gad_source=1&gclid=CjwKCAiA0PuuBhBsEiwAS7fsNZfPiEXEa_yYXZbBG0EqsMO_cyWcoeo4zpIp0mXG-7f_RWKzXp1g8xoCXuMQAvD_BwE",
-//         categoria:"camisetas",
-//          talla:"S",
-//          precio:4.50 },
-       
-//   ];
 
-console.log(Product);
-
-router.get("/products",(req,res)=>{//Ruta Read products me permite ver todos los productos
-    res.send(Product)//Utilizo res.json (products porqué debería enviarme un archivo de objetos de productos)
-})
-
-//GET /products/:productId
-router.get("/products:productId",async (req,res)=>{//Ruta Read products id
-
+router.get("/products", async(req, res) => {
     try {
-        const product = await Product.findById(req.params._id);//_id bajo se utiliza porqué lo especifica así mongo
+        const products = await Product.find();//Find es un metodo de mongo que te permite encontrar todos los productos en este caso
+        res.send(products);
+    } catch (error) {
+        console.error(error);
+    }
+});
+
+router.get("/products:productId", async(req, res) => {
+    try {
+        const product = await Product.findById(req.params._id);
         res.send(product);
     } catch (error) {
         console.error(error);
         res.status(500).send({
-            message: "There was a problem with the product with _id number: " +
+            message: "There was a problem with the product with id number: " +
                 req.params._id,
         });
     }
-})
+}, )
 
-//como lo verifico?
+
+
 
 
 
@@ -54,8 +42,13 @@ router.post("/dashboard",async (req,res)=>{
     } catch (error){console.log(error)}
 })
 
-router.get("/dashboard",(req,res)=>{
-    res.send(Product)
+router.get("/dashboard",async (req,res)=>{
+    try {
+        const products = await Product.find();//Find es un metodo de mongo que te permite encontrar todos los productos en este caso
+        res.send(products);
+    } catch (error) {
+        console.error(error);
+    }
 })
 
 
