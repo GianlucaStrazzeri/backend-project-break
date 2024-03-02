@@ -15,7 +15,31 @@ router.get("/products", async(req, res) => {
     }
 });
 
+router.get("/dashboard",async (req,res)=>{
+    try {
+        const products = await Product.find();//Find es un metodo de mongo que te permite encontrar todos los productos en este caso
+        res.send(products);
+    } catch (error) {
+        console.error(error);
+    }
+})
+
+//Ruta get products/id/:_id
 router.get("/products/id/:_id", async(req, res) => {
+    try {
+        const product = await Product.findById(req.params._id);
+        res.send(product);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send({
+            message: "There was a problem with the product with id number: " +
+                req.params._id,
+        });
+    }
+}, )
+
+
+router.get("/dashboard/id/:_id", async(req, res) => {
     try {
         const product = await Product.findById(req.params._id);
         res.send(product);
@@ -31,9 +55,6 @@ router.get("/products/id/:_id", async(req, res) => {
 
 
 
-
-
-
 //Ruta Post dashboard
 router.post("/dashboard",async (req,res)=>{
     try{
@@ -42,14 +63,7 @@ router.post("/dashboard",async (req,res)=>{
     } catch (error){console.log(error)}
 })
 
-router.get("/dashboard",async (req,res)=>{
-    try {
-        const products = await Product.find();//Find es un metodo de mongo que te permite encontrar todos los productos en este caso
-        res.send(products);
-    } catch (error) {
-        console.error(error);
-    }
-})
+
 
 
 
