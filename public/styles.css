@@ -75,10 +75,24 @@ font-size: larger;
 	gap:20px;
 }
 
-.circlecolor{
+.circlecolorgreen, .circlecolorblue, .circlecolorgrey, .circlecoloryellow{
 	height:50px;
 	width:50px;
-	background-color:rgb(82, 197, 82);
 	border-radius: 35%;
 }
 
+.circlecolorgreen{
+	background-color:rgb(82, 197, 82);
+}
+
+.circlecolorblue{
+	background-color:rgb(44, 19, 184);
+}
+
+.circlecolorgrey{
+	background-color:rgb(56, 61, 68);
+}
+
+.circlecoloryellow{
+	background-color:rgb(251, 255, 7);
+}
