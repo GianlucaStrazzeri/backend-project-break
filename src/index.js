@@ -36,3 +36,6 @@ app.listen(PORT,()=>//Escucho al servidor
 console.log(`Express escuchando en el http:localhost:${PORT}`))
 
 
+// const ejemplos=[ {},{},{},{},{},{},{},{}]
+// const newtemplate=``
+// ejemplos.forEach((ejemplo)=>console.log(newtemplate))

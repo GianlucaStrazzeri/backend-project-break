@@ -46,46 +46,39 @@ table {
 /* My css starts from here */
 
 .title{
-display:flex;
 font-size: larger;
-gap:20px;
-align-items: center;
-flex-direction: column;
-margin:8px 0px 8px 0px;
 }
 
-.nav{
-    display:flex;
-    gap:20px;
-    color:white;
-	justify-content: center;
+.nav, .form{
 	padding:20px 20px 20px 20px;
 }
 
-.form{
-	display:flex;
-	flex-direction: column;
-    gap:20px;
-	align-items: center;
-	justify-content: center;
-	padding:20px 20px 20px 20px;
-}
 
 .formitem{
-	display:flex;
-	justify-content: center;
 	margin:2px 20px 20px 2px;
-	
 }
 
-.formitemsubmit{
-	display:flex;
-	justify-content: center;
+.products,.infoarticulo,.formitemsubmit, .title{
 	margin:8px 0px 0px 0px;
 }
 
-.products{
+.form, .title{
+	display:flex;
+	flex-direction: column;
+	align-items: center;
+	gap:20px;
+}
+
+.products,.infoarticulo,.formitemsubmit, .formitem, .form, .nav,.circlecolorcontainer, .colors{
 	display:flex;
 	justify-content: center;
 	gap:20px;
 }
+
+.circlecolor{
+	height:50px;
+	width:50px;
+	background-color:rgb(82, 197, 82);
+	border-radius: 35%;
+}
+

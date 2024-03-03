@@ -14,3 +14,6 @@ precio: Number,
 const Product =mongoose.model("Product",ProductSchema)//creo una constante Producto que es igual al modelo de mongoose Product y ProductSchema
 
 module.exports={Product}
+
+
+
