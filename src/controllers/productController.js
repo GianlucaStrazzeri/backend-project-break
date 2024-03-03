@@ -1,5 +1,6 @@
 //Poner funciones de controladores separado de rutas
 const {Product} =require ("../models/Product")
+const {templateform}= require("../models/template.js");
 
 const ProductController={
     async getProduct (req, res)  {
