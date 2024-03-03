@@ -32,6 +32,46 @@ const ProductController={
             });
         }
     },
+
+    async getDasboardID(req, res)  {
+        try {
+            const product = await Product.findById(req.params._id);
+            res.send(product);
+        } catch (error) {
+            console.error(error);
+            res.status(500).send({
+                message: "There was a problem with the product with id number: " +
+                    req.params._id,
+            });
+        }
+    },
+
+
+    async  postDasboard (req,res) {
+        try{
+            const product= await Product.create({...req.body})
+        res.status(201).json(product)
+        } catch (error){console.log(error)}
+    },
+
+    getDasboardNew (req,res){
+        res.send(templateform)
+        },
+
+        async deleteDashboardID (req,res){
+            try{
+                const id=req.params._id;
+                const product = await Product.findByIdAndDelete(id);
+                    res.json({mensaje:"The product that you have already deleted is:", product})
+            }
+            catch (error){
+                console.error(error);
+                res.status(500).send({
+                message: "There was a problem deleting the product with id number: " +
+                            req.params._id,
+                    });
+            }
+            }
 }
 
 module.exports= ProductController;

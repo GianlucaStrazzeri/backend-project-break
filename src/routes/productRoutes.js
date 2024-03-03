@@ -5,56 +5,13 @@ const {Product} = require("../models/Product.js");
 const {templateform}= require("../models/template.js");
 const ProductController= require("../controllers/productController.js")
 
-
 router.get("/products",ProductController.getProduct );
-router.get("/dashboard",ProductController.getDashboard)
-
-//Ruta get products/id/:_id
-router.get("/products/id/:_id", ProductController.getProductsID )
-
-//Ruta get dashboard/id/:_id
-router.get("/dashboard/id/:_id", async(req, res) => {
-    try {
-        const product = await Product.findById(req.params._id);
-        res.send(product);
-    } catch (error) {
-        console.error(error);
-        res.status(500).send({
-            message: "There was a problem with the product with id number: " +
-                req.params._id,
-        });
-    }
-}, )
-
-
-//Ruta Post dashboard
-router.post("/dashboard",async (req,res)=>{
-    try{
-        const product= await Product.create({...req.body})
-    res.status(201).json(product)
-    } catch (error){console.log(error)}
-})
-
-//GET /dashboard/new
-router.get("/dashboard/new", (req,res)=>{//Ruta Read dashboard/new
-res.send(templateform)
-})
-
-//Delete a Product using id
-router.delete("/dashboard/id/:_id", async (req,res)=>{
-    try{
-        const id=req.params._id;
-        const product = await Product.findByIdAndDelete(id);
-            res.json({mensaje:"The product that you have already deleted is:", product})
-    }
-    catch (error){
-        console.error(error);
-        res.status(500).send({
-        message: "There was a problem deleting the product with id number: " +
-                    req.params._id,
-            });
-    }
-    })
+router.get("/dashboard",ProductController.getDashboard);
+router.get("/products/id/:_id", ProductController.getProductsID );
+router.get("/dashboard/id/:_id", ProductController.getDasboardID );
+router.post("/dashboard", ProductController.postDasboard);
+router.get("/dashboard/new",ProductController.getDasboardNew);
+router.delete("/dashboard/id/:_id", ProductController.deleteDashboardID );
 
 
 
