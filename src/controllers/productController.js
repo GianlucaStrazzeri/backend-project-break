@@ -2,6 +2,7 @@
 const {Product} =require ("../models/Product")
 const {templateform}= require("../models/template.js");
 
+
 const ProductController={
     async getProduct (req, res)  {
         try {
@@ -15,7 +16,7 @@ const ProductController={
     async getDashboard (req,res){
         try {
             const products = await Product.find();//Find es un metodo de mongo que te permite encontrar todos los productos en este caso
-            res.send(products);
+            res.send(dashboard,products);
         } catch (error) {
             console.error(error);
         }
@@ -74,5 +75,7 @@ const ProductController={
             }
             }
 }
+
+
 
 module.exports= ProductController;
